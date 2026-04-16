@@ -11,10 +11,10 @@ import es.iesra.servicio.ReservaService
  * Se realiza la inyección de dependencias de manera manual.
  */
 fun main() {
-    // Crear la instancia del repositorio (capa de datos).
     val daoFichero = ReservaDAOFichero("datos/fichero.csv")
     val daoMemoria = ReservaDAOMemoria()
 
+    // Crear la instancia del repositorio (capa de datos).
     val repositorio = ReservaRepository(daoFichero)
 
     // Inyectar la dependencia en el servicio a través de la interfaz.
