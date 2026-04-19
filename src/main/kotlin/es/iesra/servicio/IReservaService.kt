@@ -10,5 +10,6 @@ import es.iesra.dominio.Reserva
 interface IReservaService {
     fun crearReservaVuelo(descripcion: String, origen: String, destino: String, horaVuelo: String)
     fun crearReservaHotel(descripcion: String, ubicacion: String, numeroNoches: Int)
+    fun eliminarReserva(tipo: String, id: String)
     fun listarReservas(): List<Reserva>
 }

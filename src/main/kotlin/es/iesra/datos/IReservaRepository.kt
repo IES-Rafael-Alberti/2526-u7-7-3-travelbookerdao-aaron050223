@@ -7,5 +7,6 @@ import es.iesra.dominio.Reserva
  */
 interface IReservaRepository {
     fun agregar(reserva: Reserva): Boolean
+    fun eliminar(tipo: String, id: String): Boolean
     fun obtenerTodas(): List<Reserva>
 }
