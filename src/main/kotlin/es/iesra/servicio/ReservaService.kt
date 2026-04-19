@@ -20,5 +20,9 @@ class ReservaService(private val repositorio: IReservaRepository) : IReservaServ
         repositorio.agregar(reservaHotel)
     }
 
+    override fun eliminarReserva(tipo: String, id: String) {
+        repositorio.eliminar(tipo, id)
+    }
+
     override fun listarReservas() = repositorio.obtenerTodas()
 }
