@@ -36,4 +36,25 @@ class ReservaDAOFichero(private val rutaFichero: String): IReservaDAO {
         }
         return lista.toList()
     }
+
+    override fun borrar(tipo: String, id: String): Boolean {
+        if (!fichero.exists()) return false
+
+        val lineasOriginales = fichero.readLines()
+        val lineasRestantes = lineasOriginales.filterNot { linea ->
+            val campos = linea.split(",")
+            if (campos.size >= 2) {
+                val coincideTipo = campos[0].equals(tipo, ignoreCase = true)
+                val coincideId = campos[1].trim() == id.trim()
+                coincideTipo && coincideId
+            } else false
+        }
+
+        return if (lineasOriginales.size != lineasRestantes.size) {
+            fichero.writeText(lineasRestantes.joinToString("\n") + if (lineasRestantes.isNotEmpty()) "\n" else "")
+            true
+        } else {
+            false
+        }
+    }
 }
