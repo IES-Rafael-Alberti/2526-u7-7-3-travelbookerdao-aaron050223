@@ -16,8 +16,9 @@ class ConsolaUI(private val reservaService: IReservaService) : IUserInterface {
             mostrarMenu()
             when (leerOpcion()) {
                 1 -> crearReserva()
-                2 -> listarReservas()
-                3 -> {
+                2 -> eliminarReserva()
+                3 -> listarReservas()
+                4 -> {
                     println("Saliendo de la aplicación. ¡Hasta luego!")
                     salir = true
                 }
@@ -30,8 +31,9 @@ class ConsolaUI(private val reservaService: IReservaService) : IUserInterface {
     private fun mostrarMenu() {
         println("\n----- Gestor de Reservas -----")
         println("1. Crear nueva reserva")
-        println("2. Listar reservas")
-        println("3. Salir")
+        println("2. Eliminar reserva")
+        println("3. Listar reservas")
+        println("4. Salir")
         print("Seleccione una opción: ")
     }
 
@@ -87,6 +89,20 @@ class ConsolaUI(private val reservaService: IReservaService) : IUserInterface {
                 }
             }
 
+            else -> println("Opción no válida.")
+        }
+    }
+
+    private fun eliminarReserva() {
+        print("\nIngrese el ID de la reserva a eliminar: ")
+        val idEliminar = readln()
+        println("\nSeleccione el tipo de reserva a eliminar:")
+        println("1. Reserva de Vuelo")
+        println("2. Reserva de Hotel")
+        print("Opción: ")
+        when (leerOpcion()) {
+            1 -> reservaService.eliminarReserva("VUELO", idEliminar)
+            2 -> reservaService.eliminarReserva("HOTEL", idEliminar)
             else -> println("Opción no válida.")
         }
     }
